@@ -2,7 +2,7 @@
 <hr>
 <%= form_for @post, html: {multipart: true} do |f| %>
   <%= f.label :image %>
-  <%= f.file_field :image %>
+  <%= f.file_field :image, multiple: true %>
   <br>
   <%= f.label :description %>
   <%= f.text_area :description %>
