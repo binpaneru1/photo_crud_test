@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="dataSourceStorageLocal">
+    <data-source name="Rails PHOTO_CRUD: development" uuid="857a9a0d-14d8-431c-8920-2a86f7c8c978">
+      <database-info product="" version="" jdbc-version="" driver-name="" driver-version="" family="POSTGRES" exact-version="0.0" />
+      <first-sync>true</first-sync>
+      <user-name>postgres</user-name>
+    </data-source>
+    <data-source name="Rails PHOTO_CRUD: test" uuid="c20f9072-9650-44a8-abf1-ddb2c2bf7d43">
+      <database-info product="" version="" jdbc-version="" driver-name="" driver-version="" />
+      <user-name>postgres</user-name>
+    </data-source>
+    <data-source name="Rails PHOTO_CRUD: production" uuid="903b9555-a077-426e-bd08-d1a7bbfa1eb8">
+      <database-info product="" version="" jdbc-version="" driver-name="" driver-version="" />
+      <user-name>photo_crud</user-name>
+    </data-source>
+  </component>
+</project>
