@@ -19,6 +19,8 @@ gem 'paperclip', '~> 6.1'
 gem 'pg', '>= 0.18', '< 2.0'
 
 
+
+
 gem 'delayed_job_active_record'
 gem 'jquery-rails'
 
@@ -60,6 +62,7 @@ group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
   # gem 'byebug', platforms: [:mri, :mingw, :x64_mingw]
   gem 'pry'
+  gem 'dotenv-rails'
 end
 
 group :development do
