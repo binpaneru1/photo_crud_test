@@ -52,13 +52,13 @@ Rails.application.configure do
   # number of complex assets.
 
   config.action_mailer.delivery_method = :letter_opener
-
+#If sendgrid service is used
   ActionMailer::Base.smtp_settings = {
    :address        => 'smtp.sendgrid.net',
    :port           => '587',
    :authentication => :plain,
-   :user_name      => 'binod123',
-   :password       => '@java@123',
+   :user_name      => ENV['SENDGRID_USERNAME'],
+   :password       => ENV['SENDGRID_PASSWORD'],
    :domain         => 'localhost:3000',
    :enable_starttls_auto => true
  }
