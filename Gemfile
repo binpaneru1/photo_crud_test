@@ -18,12 +18,11 @@ gem 'paperclip', '~> 6.1'
 # Use postgresql as the database for Active Record
 gem 'pg', '>= 0.18', '< 2.0'
 
-gem 'sqlite3'
 
 gem 'delayed_job_active_record'
 gem 'jquery-rails'
 
-gem "letter_opener", :group => :development
+
 
 gem 'bootstrap-sass', '~> 3.3.7'
 
@@ -69,6 +68,7 @@ group :development do
   gem 'listen', '>= 3.0.5', '< 3.2'
   # Spring speeds up development by keeping your application running in the background. Read more: https://github.com/rails/spring
   gem 'spring'
+  gem 'letter_opener'
   gem 'spring-watcher-listen', '~> 2.0.0'
 end
 
