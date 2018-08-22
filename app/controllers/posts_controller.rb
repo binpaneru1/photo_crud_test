@@ -28,28 +28,36 @@ class PostsController < ApplicationController
 
   end
 
-
   def show
     @post = Post.find(params[:id])
+    @img = Image.find(params[:id])
+
   end
 
   def create
     @post = Post.new(permit_post)
     @post.user_id = current_user.id
-    # binding.pry
     if @post.save
-        #individual post page
-        flash[:success] = "Success"
-        redirect_to post_path(@post)
+      params[:post][:image].each do |x|
+        @img = Image.new(permit_image)
+        @img.post_id = @post.id
+        @img.image = x
+        @img.save
+      end
+      flash[:success] = "Success"
+      redirect_to post_path(@post)
     else
-        flash[:error] = @post.errors.full_messages
-        redirect_to new_post_path
-    end  
+      flash[:error] = @post.errors.full_messages
+      redirect_to new_post_path
+    end
   end
 
 #TO prevent sql injection, ensures user can only edit image and descriptions only.  
   private 
     def permit_post
-       params.require(:post).permit(:image, :description) 
+       params.require(:post).permit(:description,:title)
+    end
+    def permit_image
+      params.require(:post).permit(:image)
     end
 end
