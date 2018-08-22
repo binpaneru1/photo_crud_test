@@ -30,13 +30,12 @@ class PostsController < ApplicationController
 
   def show
     @post = Post.find(params[:id])
-    @img = Image.find(params[:id])
-
   end
 
   def create
     @post = Post.new(permit_post)
     @post.user_id = current_user.id
+    @number = params[:post][:image].length
     if @post.save
       params[:post][:image].each do |x|
         @img = Image.new(permit_image)
@@ -44,7 +43,7 @@ class PostsController < ApplicationController
         @img.image = x
         @img.save
       end
-      flash[:success] = "Success"
+      flash[:success] = " #{@number} images has been uploaded"
       redirect_to post_path(@post)
     else
       flash[:error] = @post.errors.full_messages
@@ -60,4 +59,5 @@ class PostsController < ApplicationController
     def permit_image
       params.require(:post).permit(:image)
     end
+
 end
