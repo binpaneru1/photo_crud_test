@@ -3,8 +3,9 @@
     <br><br>
     <tr>
       <td>
-        <%= image_tag(x.image.url, size: "300x300") %>
-        
+        <% x.images.each do |y| %>
+        <%= image_tag(y.image.url, size: "300x300") %>
+        <% end  %>
       </td>
        </tr>
        <br><br>
@@ -17,12 +18,12 @@
       <% if user_signed_in? %>
       <tr>
         <td>
-          <%= link_to "Edit", edit_post_path(x) %>
-        </td>
-        <td>
-        <%= link_to "Destroy", x, method: :delete, data: {confirm: "Are you sure?"} %>
-      </td>
-      </tr>
+          <%#= link_to "Edit", edit_post_path(x) %>
+<!--        </td>-->
+<!--        <td>-->
+        <%#= link_to "Destroy", x, method: :delete, data: {confirm: "Are you sure?"} %>
+<!--      </td>-->
+<!--      </tr>-->
       <% end %>
    
     

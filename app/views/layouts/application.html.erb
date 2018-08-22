@@ -10,10 +10,10 @@
   </head>
 
   <body>
+  <%= render 'posts/header' %>
        <!-- Navigation -->
   <nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
     <div class="container">
-      
       <div class="navbar-header">
         <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
           <span class="sr-only">Toggle navigation</span>
@@ -25,7 +25,7 @@
       </div>
       <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
           <ul class="nav navbar-nav">
-      
+
             <li >
               <% if user_signed_in? %>
               <%= link_to "New Post", new_post_path %>
@@ -39,15 +39,12 @@
            <li>
              <%= link_to "Login", new_user_session_path %>
            </li>
-
            <li>
              <%= link_to "Signup", new_user_registration_path %>
            </li>
-              
            <% end %>
           </ul>
         </div>
-        
         </div>
       </div>
     </nav>
