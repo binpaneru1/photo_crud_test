@@ -1,0 +1,10 @@
+<div class="row hide-edit" id="edit-each-comment-<%=comment.id%>">
+  <div class="col-md-12">
+    <%= form_for comment ,:html => {:id=>"edit-comment-#{comment.id}"}  do |f| %>
+    <div class="form-group" style="margin-top:20px; padding-left: 20px;padding-right: 10px;">
+      <%= f.text_area :comment , class: "form-control"%>
+    </div>
+    <%= f.submit :submit ,value: "Update", class: "btn btn-primary", :style=> "float: right" %>
+    <% end %>
+  </div>
+</div>

@@ -10,9 +10,81 @@
  * files in this directory. Styles in this file should be added after the last require_* statement.
  * It is generally better to create a new file per style scope.
  *
+ *= require bxslider
  *= require_tree .
  *= require_self
  */
  @import "bootstrap-sprockets";
  @import "bootstrap";
  @import "bootstrap/theme";
+ @import "posts";
+
+.bx-wrapper img {
+  max-width: 100%;
+  display: inline;
+}
+div.pic {
+  margin: auto;
+  padding: 10px;
+  width: 80%;
+  background-color: #d3dae5;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+}
+img {
+  border-radius: 8px;}
+p.lead {
+  text-align: center;
+  padding: 10px 20px;
+}
+
+.user{
+  margin-top: 15px;
+  padding-top: 15px;
+  display: block;
+  font: caption;
+  font-size: 35px;
+  font-family: "KacstPoster", Helvetica, Arial, Sans-Serif;
+  text-align: left;
+}
+.title{
+  font-family: "Segoe UI", "Helvetica Neue", Arial, sans-serif;
+  font-size: 25px;
+  mso-font-info-type: cursive;
+  display: block;
+  margin-top: 15px;
+  padding: 15px;
+  padding-bottom: 3px;
+  background-color: whitesmoke;
+  text-align: left;
+}
+.description{
+  font-family: "Segoe UI", "Helvetica Neue", Arial, sans-serif;
+  font-size: 19px;
+  mso-font-info-type: cursive;
+  display: block;
+  padding: 20px;
+  padding-top: 3px;
+  background-color: whitesmoke;
+  text-align: left;
+}
+.comment{
+  padding-top: 2px;
+  text-align: left;
+}
+
+.far {
+  color: #2E2F30;
+  font-size: 100px;
+  cursor: pointer;
+  user-select: none;
+}
+
+.far:hover {
+  color: darkblue;
+}
+.hide-edit{
+  display: none;
+}
+
+
+

@@ -1,12 +1,20 @@
 <h2>Edit Post</h2>
 <hr>
 <%= form_for @post, html: {multipart: true} do |f| %>
-  <%= f.label :image %>
-  <%= f.file_field :image %>
-  <br>
-  <%= f.label :description %>
-  <%= f.text_area :description %>
-  <br>
-  <%= f.submit :update %>
+  <div class="form-group">
+    <%= f.label :title %>
+    <%= f.text_field :title, class: "form-control" %>
+  </div>
+  <div class="form-group">
+    <%= f.label :description %>
+    <%= f.text_area :description , class: "form-control"%>
 
-<% end %> 
+  </div>
+  <div class="form-group">
+    <%= f.label :image %>
+    <%= f.file_field :image, multiple: true, class: "form-control-file", name: "image[]", id: "images", onchange: "preview_images()" %>
+  </div>
+  <div class="row" id="image_preview">  </div>
+  <%= f.submit :submit ,class: "btn btn-primary" %>
+
+<% end %>

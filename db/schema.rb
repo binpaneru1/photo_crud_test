@@ -17,10 +17,12 @@ ActiveRecord::Schema.define(version: 2018_08_22_065212) do
 
   create_table "comments", force: :cascade do |t|
     t.text "comment"
-    t.bigint "image_id"
+    t.bigint "post_id"
+    t.bigint "user_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.index ["image_id"], name: "index_comments_on_image_id"
+    t.index ["post_id"], name: "index_comments_on_post_id"
+    t.index ["user_id"], name: "index_comments_on_user_id"
   end
 
   create_table "delayed_jobs", force: :cascade do |t|
@@ -94,7 +96,8 @@ ActiveRecord::Schema.define(version: 2018_08_22_065212) do
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
 
-  add_foreign_key "comments", "images"
+  add_foreign_key "comments", "posts"
+  add_foreign_key "comments", "users"
   add_foreign_key "images", "posts"
   add_foreign_key "likes", "images"
   add_foreign_key "posts", "users"

@@ -28,6 +28,8 @@ gem 'jquery-rails'
 
 gem 'bootstrap-sass', '~> 3.3.7'
 
+# for image slider
+gem 'bxslider-rails'
 
 # Use Puma as the app server
 gem 'puma', '~> 3.11'

@@ -1,18 +1,28 @@
 class PostsController < ApplicationController
+  before_action :set_post, only: [:show]
   def new
     @post = Post.new
   end
 
+  def home
+    @posts_home = Post.all
+  end
+
+  def profile
+    @comment = Comment.new
+    @posts = current_user.posts
+  end
+
   def index
     if user_signed_in?
-    @post = current_user.posts
+    @posts = current_user.posts
     else 
-      @post = Post.all
+      @posts = Post.all
     end
-
   end
   def destroy
     Post.find(params[:id]).destroy
+
     redirect_to posts_path
   end
 
@@ -22,22 +32,37 @@ class PostsController < ApplicationController
       #binding.pry
   end
 
-  def update 
-    @post = Post.find(params[:id]).update(permit_post)
-    redirect_to posts_path
+  def update
+   #binding.pry
+    @post = Post.find(params[:id])
+   Image.where(post_id: @post.id).delete_all
+    if @post.update(permit_post)
+      params[:image].each do |x|
+        @img = Image.new(permit_image)
+        @img.post_id = @post.id
+        @img.image = x
+        @img.save
+      end
+      flash[:success] = "Successfully updated"
+      redirect_to post_path(@post)
 
-  end
+    else
+      flash[:error] = @post.errors.full_messages
+      redirect_to new_post_path
+
+     end
+    end
 
   def show
-    @post = Post.find(params[:id])
   end
 
   def create
     @post = Post.new(permit_post)
+    #binding.pry
     @post.user_id = current_user.id
-    @number = params[:post][:image].length
+    @number = params[:image].length
     if @post.save
-      params[:post][:image].each do |x|
+      params[:image].each do |x|
         @img = Image.new(permit_image)
         @img.post_id = @post.id
         @img.image = x
@@ -52,10 +77,15 @@ class PostsController < ApplicationController
   end
 
 #TO prevent sql injection, ensures user can only edit image and descriptions only.  
-  private 
+  private
+    def set_post
+      @post = Post.find(params[:id])
+    end
+
     def permit_post
        params.require(:post).permit(:description,:title)
     end
+
     def permit_image
       params.require(:post).permit(:image)
     end
