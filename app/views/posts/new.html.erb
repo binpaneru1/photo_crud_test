@@ -11,8 +11,9 @@
   </div>
   <div class="form-group">
     <%= f.label :image %>
-    <%= f.file_field :image, multiple: true, class: "form-control-file" %>
+    <%= f.file_field :image, multiple: true, class: "form-control-file", name: "image[]", id: "images", onchange: "preview_images()" %>
   </div>
+  <div class="row" id="image_preview">  </div>
   <%= f.submit :submit ,class: "btn btn-primary" %>
 
 <% end %>

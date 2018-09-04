@@ -1,0 +1,30 @@
+<div class="col-md-5 comment" style="padding-top: 10px; padding-right: 0px" >
+  <i onclick="myFunction(this)" class="far fa-thumbs-up" style="font-size: 50px; padding-bottom: 20px; padding-left: 10px;">Like Count</i>
+  <div class="row comment-scroll">
+    <% comments.each do |comment| %>
+    <div class="col-md-12">
+      <div class="col-md-2">
+        <div class="thumbnail">
+          <img class="img-responsive user-photo" src="https://ssl.gstatic.com/accounts/ui/avatar_2x.png">
+        </div><!-- /thumbnail -->
+      </div>
+      <div class="col-md-10">
+        <div class="panel panel-default">
+          <div class="panel-heading">
+            <strong><%=comment.user.name %></strong>
+            <i class="far fa-trash-alt comment-change" style="font-size: 12px; padding: 5px;">
+              <%= link_to 'Destroy', comment, method: :delete, data: { confirm: 'Are you sure?',class: "delete_comment" }, :remote => true %>
+            </i>
+            <i class="far fa-edit comment-change" style="font-size: 12px; padding: 5px;"
+             onclick="editComment(<%= comment.id %>)"></i></br> <span class="text-muted">Commentd on <%=comment.updated_at%></span>
+          </div>
+          <div class="panel-body">
+            <%=comment.comment %>
+          </div><!-- /panel-body -->
+          <%= render partial: 'comments/edit', locals: { comment: comment } %>
+
+        </div><!-- /panel panel-default -->
+      </div><!-- /col-sm-5 -->
+    </div>
+    <% end %>
+  </div>

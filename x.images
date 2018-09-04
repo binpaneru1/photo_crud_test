@@ -1,0 +1,15 @@
+
+[1mFrom:[0m /home/binod/Documents/photo_crud_test/app/views/posts/index.html.erb @ line 18 ActionView::CompiledTemplates#_app_views_posts_index_html_erb___3476547756387600353_69937505915940:
+
+    [1;34m13[0m:               <li data-target="#myCarousel" data-slide-to="2"></li>
+    [1;34m14[0m:             </ol>
+    [1;34m15[0m: 
+    [1;34m16[0m:             <!-- Wrapper for slides -->
+    [1;34m17[0m:             <div class="carousel-inner">
+ => [1;34m18[0m:               <% binding.pry %>
+    [1;34m19[0m:               <% x.images.each do |y| %>
+    [1;34m20[0m:                 <% count=0 %>
+    [1;34m21[0m:                 <% if count == 0 %>
+    [1;34m22[0m:                   <div class="item active">
+    [1;34m23[0m:                     <%= image_tag(y.image.url, size: "300x300") %>
+

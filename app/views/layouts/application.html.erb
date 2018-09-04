@@ -4,13 +4,34 @@
     <title>InstagramApp</title>
 
     <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.2.0/css/all.css" integrity="sha384-hWVjflwFxL6sNzntih27bfxkr27PmbbK/iSvJ+a4+0owXq79v+lsFkW54bOGbiDQ" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
-    <%= csrf_meta_tags %>
-  
-  </head>
 
+    <%= csrf_meta_tags %>
+<!--    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">-->
+<!--    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>-->
+<!--    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>-->
+    <script>
+        function preview_images()
+        {
+            var total_file=document.getElementById("images").files.length;
+            for(var i=0;i<total_file;i++)
+            {
+                $('#image_preview').append("<div class='col-md-3'><img class='img-responsive' src='"+URL.createObjectURL(event.target.files[i])+"'><input type='button' value='Remove' onclick='removeImage("+i+")'> </div>");
+            }
+        }
+        function removeImage(i) {
+            file=document.getElementById("images").files;
+
+            //alert(file[i]);
+            // file.splice(i,1);
+            preview_images();
+        }
+    </script>
+  </head>
   <body>
-  <%= render 'posts/header' %>
+  <%= render 'layouts/header' %>
        <!-- Navigation -->
   <nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
     <div class="container">
@@ -62,10 +83,6 @@
         </div>
        </div>
     </div>
-    
     <style> body {padding-top: 70px;}</style>
-  
-
-    
   </body>
 </html>
