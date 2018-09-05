@@ -14,12 +14,10 @@
 //= require rails-ujs
 //= require bootstrap-sprockets
 //= require bxslider
-//= require_tree
-
+//= require_tree .
 
 $(document).ready(function(){
   $('.bxslider').bxSlider();
-
 });
 
 function editComment(x){
@@ -29,6 +27,7 @@ function editComment(x){
 function myFunction(x) {
   x.classList.toggle("far fa-thumbs-up");
 }
+
 
 
 

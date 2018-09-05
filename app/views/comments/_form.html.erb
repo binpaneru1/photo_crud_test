@@ -1,6 +1,6 @@
 <div class="row">
   <div class="col-md-12">
-    <%= form_for @comment  do |f| %>
+    <%= form_for Comment.new  do |f| %>
     <%= f.hidden_field :post_id, value: post.id %>
     <%= f.hidden_field :user_id, value: post.user.id %>
     <div class="form-group" style="margin-top:20px; padding-left: 20px;padding-right: 10px;">

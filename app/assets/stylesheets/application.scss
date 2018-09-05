@@ -17,7 +17,9 @@
  @import "bootstrap-sprockets";
  @import "bootstrap";
  @import "bootstrap/theme";
+ @import "imageview";
  @import "posts";
+ @import "images";
 
 .bx-wrapper img {
   max-width: 100%;

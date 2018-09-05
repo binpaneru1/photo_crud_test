@@ -39,10 +39,10 @@ class CommentsController < ApplicationController
     @comment.post_id = params[:comment][:post_id] 
     if @comment.save
       flash[:success] = "Comment posted"
-      redirect_to profile_path
+       redirect_back fallback_location: root_path
     else
       flash[:error] = @comment.errors.full_messages
-      redirect_to profile_path
+       redirect_back fallback_location: root_path
     end
   end
   private

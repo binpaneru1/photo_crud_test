@@ -1,6 +1,8 @@
 Rails.application.routes.draw do
-  root 'posts#home'
-   get '/profile', to: 'posts#profile'
+  root 'posts#home' 
+  get 'images/:id', to: "images#image"
+  delete 'images/:id', to: "images#del",  as: 'images_del'
+  get '/profile', to: 'posts#profile'
   resources :posts
   resources :comments
   devise_for :users, controllers: { omniauth_callbacks: 'users/omniauth_callbacks' }
