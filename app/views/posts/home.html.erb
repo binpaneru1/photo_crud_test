@@ -1,38 +1,14 @@
-<div class="container">
-  <% @posts_home.each do |x| %>
-    <div class="row">
-      <div class="col-md-12">
-        <div class="user">
-          <%= x.user.name %>
-        </div>
-      </div>
-    </div>
-    <div class="row">
-      <div class="col-md-12">
-        <div class="title">
-          #<%= x.title %>
-        </div>
-        <div class="description">
-          <%= x.description %>
-        </div>
-      </div>
-    </div>
-    <div class="row">
-      <div class="col-md-7">
-        <div class="bxslider">
-          <%  x.images.each do |y| %>
-            <a href="/pics/<%=y.id%>"> <%= image_tag(y.image.url, size: "700x500") %> </a>
-          <% end %>
-        </div>
-      </div>
-      <div class="col-md-4 comment">
-        <i onclick="myFunction(this)" class="far fa-thumbs-up" style="font-size: 50px;">Like Count</i>
-      </div>
-    </div>
-    <% if user_signed_in? %>
-      <%= link_to "Edit", edit_post_path(x) %>
-      <%= link_to "Destroy", x, method: :delete, data: {confirm: "Are you sure?"} %>
-    <% end %>
-    </div>
-  <% end %>
-  </div>
+<div class="row">
+  <div class="col-md-3"></div>
+  <div class="col-md-6">
+   <% @posts_home.each do |post| %>
+   <%= render partial: 'posts/post', locals: { post: post } %>
+   <%= render partial: 'comments/index', locals: { comments: post.comments } %>
+   <%= render partial: 'comments/form', locals: { post: post } %>
+ </div>
+</div>
+<% end %>
+</div>
+<div class="col-md-3"></div>
+</div>
+

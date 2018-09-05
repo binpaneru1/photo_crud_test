@@ -14,6 +14,8 @@ gem 'omniauth-google-oauth2', '~> 0.5.3'
 
 gem 'paperclip', '~> 6.1'
 
+gem 'lightbox2-rails'
+
 
 # Use postgresql as the database for Active Record
 gem 'pg', '>= 0.18', '< 2.0'
