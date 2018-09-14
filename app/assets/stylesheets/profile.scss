@@ -1,0 +1,89 @@
+.fb-profile img.fb-image-lg{
+    z-index: 0;
+    width: 100%;  
+    margin-bottom: 10px;
+}
+
+.fb-image-profile
+{
+    margin: -90px 10px 0px 50px;
+    z-index: 9;
+    width: 20%; 
+}
+
+.image {
+  display: block;
+  width: 100%;
+  height: auto;
+}
+
+.overlay {
+  opacity: 0.1;
+  transition: .3s ease;
+  
+}
+
+.profile-img:hover .overlay {
+  opacity: 1;
+}
+
+.overlay-profile {
+  transition: .5s ease;
+  opacity:0;
+  color: white;
+  font-size: 20px;
+  padding: 20px;
+  text-align: center;
+  
+}
+
+.profile-img:hover .overlay-profile {
+  opacity: 1;
+}
+.fa-user:hover {
+  color: #fff;
+}
+
+.icon-profile {
+  color: black;
+  /*position: absolute; */
+  bottom: 1; 
+  background: rgb(0, 0, 0);
+  background: rgba(0, 0, 0, 0.5); /* Black see-through */
+  color: #f1f1f1; 
+  width: 18%;
+  left: 10%;
+  transition: .5s ease;
+  opacity:1;
+  font-size: 20px;
+  padding: 20px;
+  text-align: center;
+}
+
+.icon {
+  color: white;
+  font-size: 50px;
+  position: absolute;
+  top: 13%;
+  left: 90%;
+  transform: translate(-50%, -50%);
+  -ms-transform: translate(-50%, -50%);
+  text-align: center;
+}
+
+
+@media (max-width:768px)
+{
+    
+.fb-profile-text>h1{
+    font-weight: 700;
+    font-size:16px;
+}
+
+.fb-image-profile
+{
+    margin: -45px 10px 0px 25px;
+    z-index: 9;
+    width: 20%; 
+}
+}

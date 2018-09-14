@@ -11,6 +11,9 @@
 // about supported directives.
 //
 //= require jquery
+//= require popper.js
+//= require select2.js
+//= require bootstrap.js
 //= require rails-ujs
 //= require bootstrap-sprockets
 //= require bxslider
@@ -27,6 +30,14 @@ function editComment(x){
 function myFunction(x) {
   x.classList.toggle("far fa-thumbs-up");
 }
+
+
+
+
+
+
+
+
 
 
 

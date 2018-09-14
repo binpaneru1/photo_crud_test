@@ -1,9 +1,38 @@
 <div class="row">
-<div class="col-md-3"></div>
-<div class="col-md-6">
-   <% @posts.each do |post| %>
-  <%= render partial: 'posts/post', locals: { post: post } %>
-  <%= render partial: 'comments/index', locals: { comments: post.comments } %>
+  <div class="col-md-12">
+    <div class="col-md-3">
+    </div>
+    <div class="col-md-6">
+      <div class="col-md-12 profile-img">
+        <div class="fb-profile" style="margin-top: 50px;">
+          <%= image_tag("profilecover.jpg", size: "700x500", align: "left" ,class: "fb-image-lg", alt: "profile-img") %>
+          <div class="overlay">
+              <a href="#" class="icon" title="Change Cover Pic">
+                <i class="fas fa-camera"></i>
+              </a>
+          </div>
+         <%= image_tag("cover.jpg",align: "left" ,class: "fb-image-profile thumbnail", alt: "profile-img") %>
+         <div class="overlay-profile">
+              <a href="#" class="icon-profile" title="Change Cover Pic">
+                <i class="fas fa-camera"> Update profile pic</i>
+              </a>
+          </div>
+          <div class="fb-profile-text">
+            <h1>Eli Macy</h1>
+            <p>Girls just wanna go fun.</p>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-3">
+      </div>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-md-3"></div>
+    <div class="col-md-6">
+     <% @posts.each do |post| %>
+     <%= render partial: 'posts/post', locals: { post: post } %>
+     <%= render partial: 'comments/index', locals: { comments: post.comments } %>
      <%= render partial: 'comments/form', locals: { post: post } %>
 
      <% if user_signed_in? %>
@@ -13,10 +42,10 @@
    </div>
  </div>
 
-  <% end %>
+ <% end %>
 </div>
 <div class="col-md-3"></div>
 </div>
-  
+
 
 

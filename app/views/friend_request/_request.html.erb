@@ -1,0 +1,39 @@
+  <div class="top">
+    <h2>People you may know</h2>
+  </div>
+  <div class="row">
+   <% users.each do |user|  %>
+    <% if user.name != current_user.name %>
+    <div class="shadow">
+      <div class="col-sm-12">
+        <div class="col-sm-2">
+          <img src="https://www.infrascan.net/demo/assets/img/avatar5.png" class="img-circle" width="60px">
+        </div>
+        
+        <div class="col-sm-8">
+          <h4><a href="/profile/<%= user.id %>"><%= user.name %></a></h4>
+          <p><a href="#"> 2 mutual friends</a></p>
+        </div>
+        <div class="col-sm-2">
+          <br>
+          <% @friend_status = FriendRequest.where(friend_id:user.id ,user_id: current_user.id) %>
+          <% if @friend_status.empty? %>
+            <%= link_to "Send Request", send_request_path(:id => user.id) %>
+          <%else%>
+            <% @friend_status.each do|fs| %>
+              <% if fs.status == 0 %>
+                <%= link_to "Cancel Request", delete_request_path(:id => fs.id) %>
+              <% else %>
+              <%= link_to "Friend", send_request_path(:id => user.id) %>
+            <% end %>
+            <% end %>
+          <% end %>
+        </div>
+      </div>
+      <div class="clearfix"></div>
+      <hr />
+     
+    </div>
+    <% end %>
+     <% end %>
+  </div>
