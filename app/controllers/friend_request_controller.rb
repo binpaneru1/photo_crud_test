@@ -1,6 +1,6 @@
 class FriendRequestController < ApplicationController
   before_action :authenticate_user!
-  before_action :set_friend_request, except: [:index, :create, :destroy]
+  # before_action :set_friend_request, except: [:index, :create, :destroy]
   # before_action :friend_response
 
   def create
@@ -21,22 +21,19 @@ class FriendRequestController < ApplicationController
     end
   end
 
-  def response
-      @user = FriendRequest.find(params[:id])
-      @user.update(status: 1)
-      #return redirect_to friends_index_path
-      #@user.update_attributes(:status => 1)
-      redirect_back fallback_location: root_path
-  end
+
   
   def decline
       binding.pry
   end
 
   def index
+    binding.pry
     @incoming = FriendRequest.where(friend: current_user)
     @outgoing = current_user.friend_requests
   end
+
+  
 
   def destroy
     if FriendRequest.find(params[:id]).destroy

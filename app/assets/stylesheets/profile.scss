@@ -46,20 +46,25 @@
 
 .icon-profile {
   color: black;
-  /*position: absolute; */
-  bottom: 1; 
+  position: absolute; 
+  bottom: 150px; 
   background: rgb(0, 0, 0);
   background: rgba(0, 0, 0, 0.5); /* Black see-through */
   color: #f1f1f1; 
-  width: 18%;
-  left: 10%;
+  width: 0%;
+  left: 23%;
   transition: .5s ease;
   opacity:1;
   font-size: 20px;
-  padding: 20px;
+  padding: 0px;
   text-align: center;
 }
-
+.profile-name{
+  position: absolute;
+  bottom: 70px;
+  left: 30%;
+  
+}
 .icon {
   color: white;
   font-size: 50px;
@@ -86,4 +91,10 @@
     z-index: 9;
     width: 20%; 
 }
+}
+
+#output_image
+{
+ max-width:300px;
+ max-height:300px;
 }

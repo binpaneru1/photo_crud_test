@@ -1,0 +1,10 @@
+<nav class="navbar navbar-default">
+  <div class="container-fluid">
+    <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+      <ul class="nav navbar-nav">
+        <li class=""><%= link_to "View Friends", friend_list_path(:id => params[:id]), remote: true %></li>
+        <li><%= link_to "Photos", photo_gallery_path(:id => params[:id]),remote: true %></li>
+      </ul>
+    </div><!-- /.navbar-collapse -->
+  </div><!-- /.container-fluid -->
+</nav>

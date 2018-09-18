@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2018_09_11_052754) do
+ActiveRecord::Schema.define(version: 2018_09_15_054133) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -70,6 +70,7 @@ ActiveRecord::Schema.define(version: 2018_09_11_052754) do
 
   create_table "images", force: :cascade do |t|
     t.string "name"
+    t.bigint "user_id"
     t.bigint "post_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
@@ -78,6 +79,7 @@ ActiveRecord::Schema.define(version: 2018_09_11_052754) do
     t.bigint "image_file_size"
     t.datetime "image_updated_at"
     t.index ["post_id"], name: "index_images_on_post_id"
+    t.index ["user_id"], name: "index_images_on_user_id"
   end
 
   create_table "likes", force: :cascade do |t|
@@ -95,6 +97,19 @@ ActiveRecord::Schema.define(version: 2018_09_11_052754) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["user_id"], name: "index_posts_on_user_id"
+  end
+
+  create_table "profile_images", force: :cascade do |t|
+    t.string "avatar"
+    t.integer "active"
+    t.bigint "user_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.string "avatar_file_name"
+    t.string "avatar_content_type"
+    t.bigint "avatar_file_size"
+    t.datetime "avatar_updated_at"
+    t.index ["user_id"], name: "index_profile_images_on_user_id"
   end
 
   create_table "users", force: :cascade do |t|
@@ -133,6 +148,8 @@ ActiveRecord::Schema.define(version: 2018_09_11_052754) do
   add_foreign_key "friendships", "friends"
   add_foreign_key "friendships", "users"
   add_foreign_key "images", "posts"
+  add_foreign_key "images", "users"
   add_foreign_key "likes", "images"
   add_foreign_key "posts", "users"
+  add_foreign_key "profile_images", "users"
 end

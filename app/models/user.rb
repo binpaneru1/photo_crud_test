@@ -3,15 +3,11 @@ class User < ApplicationRecord
   # :confirmable, :lockable, :timeoutable and :omniauthable
   devise :database_authenticatable, :registerable, :confirmable, :lockable,
   :recoverable, :rememberable, :trackable, :validatable, :omniauthable, omniauth_providers: [:google_oauth2]
-  has_many :posts
+  has_many :posts, dependent: :destroy
+  has_many :images, dependent: :destroy
   has_many :friend_requests, dependent: :destroy
-  has_many :pending_friends, through: :friend_requests, source: :friend
-  has_many :friendships, dependent: :destroy
-  has_many :friends, through: :friendships
+ 
 
-  def remove_friend(friend)
-    current_user.friends.destroy(friend)
-  end
 
 
   #This method tries to find an existing user by the provider and uid fields
@@ -46,7 +42,6 @@ end
 def send_devise_notification(notification, *args)
  devise_mailer.send(notification, self, *args).deliver_later
 end
-
   # to copy data from session whenever a user is initialized before sign up, we just need to implement new_with_session in our model
   #def self.new_with_session(params, session)
     #super.tap do |user|
@@ -55,4 +50,22 @@ end
       #end
     #end
   #end
+
+  
+
+  def accepted_user
+    self.friend_requests.where(status: :accepted).pluck(:friend_id)
+  end
+
+  def requested_user
+    self.friend_requests.where(status: :pending).pluck(:friend_id)
+  end
+
+  def get_users
+    a = accepted_user
+    a << requested_user
+    a << self.id
+    a.flatten!
+    User.where.not(id: a) 
+  end
 end

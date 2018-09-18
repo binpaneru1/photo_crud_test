@@ -1,23 +1,12 @@
 class FriendRequest < ApplicationRecord
-
-
   belongs_to :user
-  belongs_to :friend, class_name: 'User'
-
+  belongs_to :friend, foreign_key: 'friend_id', class_name: 'User'
+  enum status: {pending: 0, accepted: 1 }
   validates :user, presence: true
   validates :friend, presence: true, uniqueness: { scope: :user }
   validate :not_self
   
-  def accept
-    user.friends << friend
-    destroy
-  end
-
-  def update
-    @friend_request.accept
-    head :no_content
-  end
-
+  
   private
   def not_self
     errors.add(:friend, 'self requested') if user == friend

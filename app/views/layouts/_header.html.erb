@@ -10,74 +10,34 @@
         <span class="icon-bar"></span>
         <span class="icon-bar"></span>
       </button>
-      <a class="navbar-brand" href="#">Brand</a>
     </div>
     <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-      <ul class="nav navbar-nav">
-        <li class="active"><a href="#">Link <span class="sr-only">(current)</span></a></li>
-        <li><a href="#">Link</a></li>
-        <li class="dropdown">
-          <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Dropdown <span class="caret"></span></a>
-          <ul class="dropdown-menu">
-            <li><a href="#">Action</a></li>
-            <li><a href="#">Another action</a></li>
-            <li><a href="#">Something else here</a></li>
-            <li role="separator" class="divider"></li>
-            <li><a href="#">Separated link</a></li>
-            <li role="separator" class="divider"></li>
-            <li><a href="#">One more separated link</a></li>
-          </ul>
-        </li>
+      <ul class="nav navbar-nav active">
+        <li><a href="/">Home</a></li>
+        <li><a href="/profile/<%= current_user.id %>">Profile</a></li>
       </ul>
       <form class="navbar-form navbar-left">
         <div class="form-group">
-          <input type="text" class="form-control" placeholder="Search">
+          <input type="text" class="form-control" id="user-search" placeholder="Search">
         </div>
         <button type="submit" class="btn btn-default">Submit</button>
       </form>
 
       <ul class="nav navbar-nav navbar-right">
-        <li class="nav-item dropdown">
-          <a class="nav-link text-light" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-           <i class="fas fa-user-plus" style="font-size: 30px;" title="Friend Request"><span class="badge badge-light" style="background-color: red;"><%= @requests.count %></span></i>
-         </a>
-         <ul class="dropdown-menu">
-         <% @requests.each do |request| %>
-          <li class="notification-box">
-            <div class="row">
-              <div class="col-lg-3 col-sm-3 col-3 text-center" style="margin-top: 20px; margin-left: 20px; ">
-                <%= image_tag("cover.jpg", style: "width:70px; height:70px; border-radius:50%;", alt: "profile-img") %>
-              </div>    
-              <div class="col-lg-8 col-sm-8 col-8">
-                <strong class="text-info">Request From <%= request.user.name %></strong>
-                <div class="button-request">
-                <%= link_to "Accept", response_request_path(:id => request.id), class: "button button-green" %>
-                  <%= link_to "Decline", decline_request_path(:id => request.id), class: "button button-red" %>
-               </div>
-               <small class="text-warning"><%= request.created_at %></small>
-             </div>    
-           </div>
-          </li>
-          <% end %>
-       <li class="footer bg-dark text-center">
-        <a href="" class="text-light">View All</a>
-      </li>
-    </ul>
-  </li>
-
-  <li class="dropdown">
-    <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-      <%= image_tag("cover.jpg", style: "width:30px; height:30px; border-radius:50%;", alt: "profile-img") %>Iasmani Pinazo </a>
-      <ul class="dropdown-menu" style="width: 60px;">
-        <li><a href="#">Account Settings <span class="glyphicon glyphicon-cog pull-right"></span></a></li>
-        <li class="divider"></li>
-        <li><a href="/users/sign_out">Sign Out <span class="glyphicon glyphicon-log-out pull-right"></span></a></li>
+      <%= render partial: 'layouts/request_list'  %>
+      <li class="dropdown">
+        <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+          <%= image_tag("cover.jpg", style: "width:30px; height:30px; border-radius:50%;", alt: "profile-img") %><strong><%=current_user.name  %></strong></a>
+          <ul class="dropdown-menu" style="width: 60px;">
+            <li><a href="#">Account Settings <span class="glyphicon glyphicon-cog pull-right"></span></a></li>
+            <li class="divider"></li>
+            <li><a href="/users/sign_out">Sign Out <span class="glyphicon glyphicon-log-out pull-right"></span></a></li>
+          </ul>
+        </li>
       </ul>
-    </li>
-  </ul>
-</div><!-- /.navbar-collapse -->
-</div>
-<div class="col-md-3">
-</div>
+    </div><!-- /.navbar-collapse -->
+  </div>
+  <div class="col-md-3">
+  </div>
 </div><!-- /.container-fluid -->
 </nav>
