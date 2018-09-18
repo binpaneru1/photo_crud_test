@@ -7,11 +7,13 @@ class PostsController < ApplicationController
 
   def home
     @posts_home = Post.all
+    @users = User.all
   end
 
   def profile
+
     @comment = Comment.new
-    @posts = current_user.posts
+    @posts = User.find(params[:id]).posts
   end
 
   def index
@@ -21,9 +23,9 @@ class PostsController < ApplicationController
       @posts = Post.all
     end
   end
+
   def destroy
     Post.find(params[:id]).destroy
-
     redirect_to posts_path
   end
 
@@ -50,7 +52,6 @@ class PostsController < ApplicationController
     else
       flash[:error] = @post.errors.full_messages
       redirect_to new_post_path
-
      end
     end
 
@@ -90,5 +91,4 @@ class PostsController < ApplicationController
     def permit_image
       params.require(:post).permit(:image)
     end
-
 end

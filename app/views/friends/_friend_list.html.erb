@@ -1,0 +1,27 @@
+<div class="row">
+
+<h1>Friend's of <%=User.find(params[:id]).name%></h1>
+  <% @friends.each do |fr| %>
+  <div class="col-md-3" style="background-color: #e6e8ff; margin: 25px;">
+    <div class="card" style="width: 18rem; margin:auto;padding-top: 15px; ">
+      <%= image_tag("profilecover.jpg",align:"center", size: "150x150",align: "center" ,class: "card-image-top", style: "border-radius: 50%;",  alt: "profile-img") %>
+      <div class="card-body">
+        <h5 class="card-title" style="font-size: 25px;"><%=fr.friend.name%></h5>
+
+        <div class="dropdown" style="margin: 20px">
+          <% if fr.status==0 %>
+          <%= link_to "Accept", response_request_path(:id => fr.id), class: "button button-green" %>
+          <%= link_to "Decline", decline_request_path(:id => fr.id), class: "button button-red" %>
+          <%else%>
+          <button class="btn btn-primary dropdown-toggle" type="button" data-toggle="dropdown">Friend
+            <span class="caret"></span></button>
+            <ul class="dropdown-menu" style="width: 10%">
+              <li><a href="#">Unfrind</a></li>
+            </ul>
+            <%end%>
+          </div>
+        </div>
+      </div>
+    </div>
+    <% end %>
+  </div>

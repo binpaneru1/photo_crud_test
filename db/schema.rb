@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2018_08_22_065212) do
+ActiveRecord::Schema.define(version: 2018_09_15_054133) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -40,8 +40,37 @@ ActiveRecord::Schema.define(version: 2018_08_22_065212) do
     t.index ["priority", "run_at"], name: "delayed_jobs_priority"
   end
 
+  create_table "friend_requests", force: :cascade do |t|
+    t.bigint "user_id"
+    t.bigint "friend_id"
+    t.integer "status"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["friend_id"], name: "index_friend_requests_on_friend_id"
+    t.index ["user_id"], name: "index_friend_requests_on_user_id"
+  end
+
+  create_table "friends", force: :cascade do |t|
+    t.bigint "user_id"
+    t.bigint "friend_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["friend_id"], name: "index_friends_on_friend_id"
+    t.index ["user_id"], name: "index_friends_on_user_id"
+  end
+
+  create_table "friendships", force: :cascade do |t|
+    t.bigint "user_id"
+    t.bigint "friend_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["friend_id"], name: "index_friendships_on_friend_id"
+    t.index ["user_id"], name: "index_friendships_on_user_id"
+  end
+
   create_table "images", force: :cascade do |t|
     t.string "name"
+    t.bigint "user_id"
     t.bigint "post_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
@@ -50,6 +79,7 @@ ActiveRecord::Schema.define(version: 2018_08_22_065212) do
     t.bigint "image_file_size"
     t.datetime "image_updated_at"
     t.index ["post_id"], name: "index_images_on_post_id"
+    t.index ["user_id"], name: "index_images_on_user_id"
   end
 
   create_table "likes", force: :cascade do |t|
@@ -67,6 +97,19 @@ ActiveRecord::Schema.define(version: 2018_08_22_065212) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["user_id"], name: "index_posts_on_user_id"
+  end
+
+  create_table "profile_images", force: :cascade do |t|
+    t.string "avatar"
+    t.integer "active"
+    t.bigint "user_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.string "avatar_file_name"
+    t.string "avatar_content_type"
+    t.bigint "avatar_file_size"
+    t.datetime "avatar_updated_at"
+    t.index ["user_id"], name: "index_profile_images_on_user_id"
   end
 
   create_table "users", force: :cascade do |t|
@@ -98,7 +141,15 @@ ActiveRecord::Schema.define(version: 2018_08_22_065212) do
 
   add_foreign_key "comments", "posts"
   add_foreign_key "comments", "users"
+  add_foreign_key "friend_requests", "users"
+  add_foreign_key "friend_requests", "users", column: "friend_id"
+  add_foreign_key "friends", "users"
+  add_foreign_key "friends", "users", column: "friend_id"
+  add_foreign_key "friendships", "friends"
+  add_foreign_key "friendships", "users"
   add_foreign_key "images", "posts"
+  add_foreign_key "images", "users"
   add_foreign_key "likes", "images"
   add_foreign_key "posts", "users"
+  add_foreign_key "profile_images", "users"
 end

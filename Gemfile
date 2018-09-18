@@ -28,7 +28,7 @@ gem 'jquery-rails'
 
 
 
-gem 'bootstrap-sass', '~> 3.3.7'
+gem 'bootstrap', '~> 4.1.3'
 
 # for image slider
 gem 'bxslider-rails'
